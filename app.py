@@ -122,7 +122,11 @@ with st.sidebar:
     compare_mode = (compare_area != "— none —" and compare_area != st.session_state.selected_area)
 
     st.divider()
-    st.caption("Built for the Scottish Government Innovation Challenge · 2026")
+    st.markdown("**No Bias Intended**")
+    st.caption(
+        "Scottish Government Innovation Challenge · 2026\n\n"
+        "Danny Lee · Vasyl Shvets · Calum Lang · Laraine Ukwu-George · Abdul Hannaan Mohammed"
+    )
 
 
 # ── Scoring ───────────────────────────────────────────────────────────────────
