@@ -86,8 +86,9 @@ with st.sidebar:
     st.caption("Decision-support dashboard — human sign-off required.")
 
     st.warning(
-        "⚠️ **Illustrative data only.** All values are sample figures for "
-        "demonstration purposes and do not represent real planning assessments.",
+        "⚠️ **Prototype — mixed data.** Digital connectivity uses real Ofcom 2025 "
+        "figures. Deprivation uses real SIMD 2020 data. Energy and grid values are "
+        "DNO-zone-informed estimates. No siting decisions should be based on this tool alone.",
     )
 
     st.divider()
@@ -125,7 +126,8 @@ with st.sidebar:
     st.markdown("**No Bias Intended**")
     st.caption(
         "Scottish Government Innovation Challenge · 2026\n\n"
-        "Abdul Hannaan Mohammed · Calum Lang · Danny Lee · Laraine Ukwu-George · Vasyl Shvets"
+        "Abdul Hannaan Mohammed · Calum Lang · Danny Lee · Laraine Ukwu-George · Vasyl Shvets\n\n"
+        "🔗 [no-bias-intended.streamlit.app](https://no-bias-intended.streamlit.app)"
     )
 
 
@@ -588,29 +590,78 @@ if compare_mode:
 else:
     render_scorecard(focus_row)
 
-# ── Data sources & limitations ────────────────────────────────────────────────
+# ── Not in scope ─────────────────────────────────────────────────────────────
 st.divider()
-with st.expander("📚 Data sources & methodological notes"):
+st.subheader("⚠️ What this tool does not cover")
+st.caption(
+    "This dashboard is a **screening tool**, not a decision tool. "
+    "A positive score does not mean a site is approved — it means it warrants closer investigation. "
+    "The following are outside the current scope and would be required before any real siting decision:"
+)
+
+not_scope_col1, not_scope_col2 = st.columns(2)
+with not_scope_col1:
     st.markdown("""
-**All values in this prototype are illustrative.** Real deployments should draw on:
+**Environmental & physical**
+- Full Environmental Impact Assessment (EIA) — legally required before planning
+- Site-level water consumption modelling vs actual source capacity ([BBC: 27 million bottles/year](https://www.bbc.co.uk/news/articles/c77zxx43x4vo))
+- Flood risk and climate change projections (SEPA flood maps)
+- Noise propagation modelling to nearest dwellings
+- Operational carbon footprint and net-zero pathway
+- Cooling system design and heat rejection impact
 
-| Indicator | Suggested real-world source |
-|-----------|----------------------------|
-| Energy capacity / grid headroom | Scottish Energy Statistics; SSEN / SP Energy Networks capacity maps; NESO Future Energy Scenarios |
-| Digital connectivity | Ofcom Connected Nations 2025 |
-| Infrastructure reuse | Scottish Vacant and Derelict Land Survey |
-| Community benefit / deprivation | Scottish Index of Multiple Deprivation (SIMD); Scotland Census 2022 |
-| Jobs estimates | NOMIS / Business Register and Employment Survey (BRES) |
-| Environmental burden (water, noise, heat) | SEPA water classification; Scottish noise maps |
-| Governance / AI strategy alignment | Scottish AI Strategy 2022–2031 (qualitative checklist — not numeric) |
+**Infrastructure**
+- Real-time grid capacity data from SSEN / SP Energy Networks portals
+- Dark fibre and telecoms backbone routing
+- Road and rail access for construction logistics
+- Water supply infrastructure capacity
+""")
+with not_scope_col2:
+    st.markdown("""
+**Community & social**
+- Actual community consultation outcomes — no mechanism here for public voice
+- Cumulative impact — what if multiple sites are approved in one area simultaneously?
+- Skills gap analysis — is there a local workforce for operational jobs?
+- Equalities impact assessment under the Public Sector Equality Duty
+- Community benefit agreement terms and enforceability
 
-**Scoring methodology**
-- Indicators are min-max normalised to 0–5 across the current candidate set. Adding or removing sites rescales all scores.
-- Burden indicators are shown on their raw normalised scale (higher = more burden); they are inverted only in the radar chart for visual clarity.
-- Benefit-to-burden ratio = community_benefit_score ÷ (environmental_burden_score + vulnerability_exposure_score). A ratio below 1.0 means burdens outweigh benefits.
-- No machine learning or predictive modelling is used. The composite score is a fully transparent weighted sum.
-- Confidence levels aggregate the per-indicator `_confidence` fields (high=2, medium=1, low=0); an area average below 1.0 triggers the "Needs further evidence" category regardless of its score.
+**Governance & legal**
+- Land ownership and acquisition feasibility
+- Planning permission status and National Planning Framework 4 compliance
+- National security review (NCSC data centre security considerations)
+- Scottish AI Strategy 2026–2031 qualitative governance checklist
+- Lifecycle decommissioning obligations
+""")
 
-**Equity principle**
-The dashboard is designed to make visible *who gains and who bears the cost* of each siting decision. Distribution indicators are given equal weight to Readiness by default. Policymakers can adjust this via the sliders but the trade-off is always shown.
+# ── Data sources & methodology ────────────────────────────────────────────────
+st.divider()
+with st.expander("📚 Data sources, confidence levels & methodology"):
+    st.markdown("""
+### What's real vs estimated
+
+| Indicator | Status | Source |
+|---|---|---|
+| Digital connectivity | ✅ **Real** — Ofcom FTTP % per council | [Ofcom Connected Nations 2025](https://www.ofcom.org.uk/phones-and-broadband/coverage-and-speeds/connected-nations-20252) via [ThinkBroadband](https://labs.thinkbroadband.com/local/scotland) (mirrors Ofcom, updated weekly) |
+| Vulnerability exposure | ✅ **Real** — SIMD 2020 deprivation % | [Scottish Index of Multiple Deprivation 2020](https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/) |
+| SIMD decile | ✅ **Real** — median SIMD decile per council | [SIMD 2020 — Scottish Government](https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/) |
+| Urban/Rural class | ✅ **Real** | [Scottish Government Urban Rural Classification 2022](https://www.gov.scot/publications/scottish-government-urban-rural-classification-2022/) |
+| Energy capacity | ⚠️ **DNO-zone estimate** — SP Distribution areas (Falkirk, Glasgow, West Lothian, Fife) scored higher; SSEN SHEPD areas (Highland, Argyll & Bute, Dundee, Aberdeenshire) lower | [SSEN Data Portal](https://data.ssen.co.uk/); [SP Energy Networks DFES](https://www.spenergynetworks.co.uk/) |
+| Future grid headroom | ⚠️ **Estimate** — based on NESO FES 2025 Scotland can absorb up to 20% of GB data centre demand; central belt has more constraints | [NESO FES 2025 Dataworkbook](https://www.neso.energy/document/364696/download) — sheets BB1 (zones), ED1 (data centre demand) |
+| Environmental burden | ⚠️ **SEPA-catchment estimate** — Forth catchment (Falkirk/West Lothian/Fife) more pressured; western/highland areas cleaner | [SEPA Water Classification Hub](https://informatics.sepa.org.uk/WaterClassificationHub/); [SEPA Data Centres Guide](https://beta.sepa.scot/topics/energy/data-centres/) |
+| Infrastructure reuse | ⚠️ **Estimate** — industrial history proxy (Falkirk/Aberdeenshire higher; Glasgow competition reduces score) | [Scottish Vacant & Derelict Land Survey 2024](https://www.gov.scot/publications/scottish-vacant-derelict-land-statistics-2024/) |
+| Community benefit | ⚠️ **SIMD-informed estimate** — deprived urban areas score higher potential | SIMD 2020; [Scottish Annual Business Statistics 2023](https://www.gov.scot/publications/scottish-annual-business-statistics-2023/) |
+| Jobs figures | ❌ **Illustrative only** — scale estimates, not site-specific modelling | [NOMIS / BRES](https://www.nomisweb.co.uk/) for real estimates |
+
+### Scoring methodology
+- Indicators are **min-max normalised to 0–5** across the candidate set. Adding or removing areas rescales all scores.
+- Burden indicators (environmental burden, vulnerability exposure) are shown raw (higher = worse). In the radar chart they are inverted so larger polygon = better.
+- **Benefit-to-burden ratio** = community_benefit_score ÷ (environmental_burden_score + vulnerability_exposure_score). Below 1.0 means burdens outweigh benefits.
+- **No machine learning** — the composite score is a fully transparent weighted sum reproducible in a spreadsheet.
+- Confidence is aggregated from per-indicator `_confidence` fields (high=2, medium=1, low=0). An area scoring below 1.0 average is gated to "Needs further evidence" regardless of its weighted total.
+
+### Key context
+- Scottish data centres are [already using enough water to fill 27 million bottles a year](https://www.bbc.co.uk/news/articles/c77zxx43x4vo)
+- SEPA [regulates associated activities](https://beta.sepa.scot/topics/energy/data-centres/) even though data centres are not standalone regulated facilities
+- [Scotland's AI Strategy 2026–2031](https://www.gov.scot/binaries/content/documents/govscot/publications/strategy-plan/2026/03/scotlands-ai-strategy-2026-2031/documents/ai-strategy-scotland/ai-strategy-scotland/govscot%3Adocument/ai-strategy-scotland.pdf) sets the responsible AI infrastructure framework this tool supports
+- [The Lancet (McLellan, 2026)](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(26)00033-4/fulltext) documents the public health concerns that drive the equity focus of this tool
 """)

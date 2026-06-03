@@ -3,7 +3,7 @@
 **No Bias Intended** — Scottish Government Innovation Challenge 2026  
 Abdul Hannaan Mohammed · Calum Lang · Danny Lee · Laraine Ukwu-George · Vasyl Shvets
 
-🔗 **Live app:** [scotland-dc-siting.streamlit.app](https://scotland-dc-siting.streamlit.app)  
+🔗 **Live app:** [no-bias-intended.streamlit.app](https://no-bias-intended.streamlit.app)  
 📁 **GitHub:** [github.com/B00409227/No-Bias-Intended](https://github.com/B00409227/No-Bias-Intended)
 
 ---
@@ -100,7 +100,7 @@ All scoring is a **transparent weighted composite indicator** — no machine lea
 | `urban_rural_class` | Official classification per council | [Scottish Government Urban Rural Classification 2022](https://www.gov.scot/publications/scottish-government-urban-rural-classification-2022/) |
 | `lat`, `lon` | Council area centroid coordinates | [Spatial Data Scotland](https://spatialdata.gov.scot/) |
 
-**Real vulnerability values used (SIMD 2020 — % of area in most deprived 20% of Scotland):**
+**Real vulnerability values used (SIMD 2020 — % of datazones in most deprived 20% of Scotland):**
 
 | Council Area | % most deprived 20% | SIMD Decile |
 |---|---|---|
@@ -112,6 +112,25 @@ All scoring is a **transparent weighted composite indicator** — no machine lea
 | Highland | 10% | 6 |
 | Argyll & Bute | 10% | 7 |
 | Aberdeenshire | 3% | 8 |
+
+**Real digital connectivity values used (Ofcom Connected Nations 2025 — full-fibre FTTP % coverage):**
+
+| Council Area | FTTP % | Gigabit-capable % | DNO Zone |
+|---|---|---|---|
+| Glasgow City | 91% | 95% | SP Distribution (PES 18) |
+| Dundee City | 88% | 96% | SSEN SHEPD (PES 17) |
+| West Lothian | 84% | 95% | SP Distribution (PES 18) |
+| Fife | 78% | 88% | SP Distribution (PES 18) |
+| Falkirk | 74% | 96% | SP Distribution (PES 18) |
+| Highland | 70% | 70% | SSEN SHEPD (PES 17) |
+| Aberdeenshire | 55% | 55% | SSEN SHEPD (PES 17) |
+| Argyll & Bute | 32% | 32% | SSEN SHEPD (PES 17) |
+
+Source: [ThinkBroadband Scotland LA data](https://labs.thinkbroadband.com/local/scotland) (mirrors Ofcom Connected Nations 2025, updated weekly). Highland and Aberdeenshire have no cable network so gigabit = FTTP only.
+
+**DNO zone mapping used for energy estimates:**
+- **SP Distribution (PES Area 18)** covers Falkirk, Glasgow, West Lothian, Fife — central belt, better interconnected grid
+- **SSEN SHEPD (PES Area 17)** covers Highland, Aberdeenshire, Argyll & Bute, Dundee — more variable; significant renewable generation but transmission constraints to load centres
 
 ### ⚠️ Estimated / illustrative values
 
