@@ -454,7 +454,7 @@ def render_scorecard(row: pd.Series):
     # ── Radar chart ───────────────────────────────────────────────────────────
     st.markdown("**Overall profile (all 7 siting indicators)**")
     st.caption(
-        "Each axis is 0–5 (normalised across the 8 candidate areas). "
+        "Each axis is 0–5 (normalised across all 32 Scottish council areas). "
         "Burden axes (Low Env. Burden, Low Vulnerability) are flipped "
         "so a larger filled area always means a better siting profile."
     )
@@ -873,11 +873,11 @@ with st.expander("📚 Data sources, confidence levels & methodology"):
 | DNO zone | ✅ **Real** | [SP Energy Networks PES 18](https://www.energybrokers.co.uk/electricity/pes-areas/pes-area-18); [SSEN SHEPD PES 17](https://www.energybrokers.co.uk/electricity/pes-areas/pes-area-17) |
 | Energy capacity | ⚠️ **DNO-zone estimate** | [SSEN Data Portal](https://data.ssen.co.uk/); [SPEN DFES](https://www.spenergynetworks.co.uk/) |
 | Future grid headroom | ⚠️ **Estimate** — NESO FES 2025 directional | [NESO FES 2025 Dataworkbook](https://www.neso.energy/document/364696/download) |
-| Community benefit | ⚠️ **SIMD-informed estimate** | SIMD 2020; [Scottish Annual Business Statistics 2023](https://www.gov.scot/publications/scottish-annual-business-statistics-2023/) |
+| Community benefit | ⚠️ **Formula-derived from real data** — (SIMD deprivation % × 1.2) + ((100 − employment rate) × 0.9) | SIMD 2020; [ONS APS 2023](https://www.ons.gov.uk/) — formula weights are transparent but subjective |
 | Jobs figures | ❌ **Illustrative** | [NOMIS / BRES](https://www.nomisweb.co.uk/) for real estimates |
 
 ### Scoring
-- Min-max normalisation to 0–5 across the 8 candidate areas. Adding/removing areas rescales all scores.
+- Min-max normalisation to 0–5 across all 32 Scottish council areas. Adding/removing areas rescales all scores.
 - Burden indicators shown raw (higher = worse); inverted only in the radar chart.
 - Benefit-to-burden ratio = community_benefit_score ÷ (environmental_burden + vulnerability). Below 1.0 means burdens outweigh benefits.
 - No machine learning — fully transparent weighted sum.

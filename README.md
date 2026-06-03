@@ -8,182 +8,202 @@ Abdul Hannaan Mohammed · Calum Lang · Danny Lee · Laraine Ukwu-George · Vasy
 
 ---
 
+## Challenge questions answered
+
+**Q1 — What methods can we use to assess, model, and communicate the impact of hosting AI data centres in Scotland?**  
+A transparent weighted composite indicator (no ML, reproducible in a spreadsheet) across 7 evidence-based dimensions, visualised through an interactive map, radar charts, a priority matrix, and a ranked table. All 32 Scottish council areas covered.
+
+**Q2 — How do the impacts of data centres differ by geography and demographics? Which communities stand to gain most, and which bear the greatest costs?**  
+The dashboard makes this directly visible. The Forth catchment (Scotland's most infrastructure-ready corridor) has 83% of its river water bodies NOT at Good/High ecological status — the communities most likely to gain investment are the same ones already bearing environmental pressure. Glasgow scores highest for community benefit potential (44% of its population is in the most deprived 20%) but also carries high environmental burden. Highland and Aberdeenshire score lowest on community benefit but have a renewable energy advantage for net-zero data centre operations.
+
+---
+
 ## What is this?
 
-A local, interactive decision-support dashboard that helps Scottish Government policymakers decide **where to site AI data centres** across Scotland.
+A decision-support dashboard for Scottish Government policymakers comparing all **32 Scottish council areas** as candidate locations for AI data centre siting. It scores each area against seven evidence-based indicators, splits them into infrastructure readiness and community equity lenses, and presents trade-offs interactively so a human decision-maker can weigh them up.
 
-The dashboard scores candidate council areas against seven evidence-based indicators, groups them into two lenses — **infrastructure readiness** and **community equity** — and presents the trade-offs visually so a human decision-maker can weigh them up. It does **not** auto-approve sites. Every recommendation is advisory; the final call belongs to a person.
+The tool **does not auto-approve sites**. It is a screening tool — a positive score means a council area warrants further investigation, not that a site is approved.
 
-The central question the tool asks is: **"Who gains and who bears the cost?"** Data centres bring jobs and investment but also place environmental stress, noise, water demand, and heat burden on nearby communities — often the most deprived ones. Making that trade-off visible and adjustable is the core purpose of this tool.
-
----
-
-## Why does this matter?
-
-Scotland's AI Strategy 2026–2031 commits to responsible, people-centred AI infrastructure. UK-wide demand for data centre capacity is growing rapidly, with [concerns already being raised](https://www.bbc.co.uk/news/articles/clyr9nx0jrzo) about the environmental and social impact of rapid construction. Scottish data centres are [already using enough water to fill 27 million bottles a year](https://www.bbc.co.uk/news/articles/c77zxx43x4vo), and [public health concerns are escalating](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(26)00033-4/fulltext).
-
-Siting decisions made purely on infrastructure criteria risk:
-- Concentrating economic benefits in already-prosperous areas
-- Placing environmental and noise burdens on deprived communities with the least political voice
-- Missing opportunities to repurpose brownfield land and existing grid connections
-
-SEPA's [regulatory guidance on data centres](https://beta.sepa.scot/topics/energy/data-centres/) is clear that environmental regulation applies to associated activities. This tool embeds equity and environment directly into the scoring methodology, giving policymakers a transparent, auditable approach aligned with Scotland's Just Transition principles.
+The central equity question: **"Who gains and who bears the cost?"**
 
 ---
 
-## What benefit does it bring?
+## Why it matters
 
-| Stakeholder | Benefit |
-|---|---|
-| **Policymakers** | Transparent, adjustable scoring replaces ad-hoc judgement. Slide a weight to instantly see how priorities change the ranking. |
-| **Communities** | Equity indicators (environmental burden, vulnerability exposure) are first-class metrics, not afterthoughts. |
-| **Infrastructure teams** | Readiness scores surface the highest-capacity sites quickly, with confidence ratings flagging where data gaps exist. |
-| **Auditors / scrutineers** | No black-box ML — every score is a documented weighted sum reproducible in a spreadsheet. |
-| **Future teams** | Designed for real data swap-in: replace the sample CSV with live datasets and the tool works immediately. |
+Scotland's AI Strategy 2026–2031 commits to responsible, people-centred AI infrastructure. UK-wide demand for data centre capacity is growing rapidly, with serious public health concerns now documented:
+
+- Scottish data centres already use [enough water to fill 27 million bottles per year](https://www.bbc.co.uk/news/articles/c77zxx43x4vo) (BBC)
+- [McLellan (The Lancet, 2026)](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(26)00033-4/fulltext) documents diesel generator pollution spikes, urban heat island effects, noise nuisance, and water competition as primary public health risks
+- [SEPA regulates associated data centre activities](https://beta.sepa.scot/topics/energy/data-centres/) and must be involved in any siting decision
+
+Siting decisions made on purely technical criteria risk concentrating benefits in prosperous areas while placing environmental and health burdens on deprived communities. This dashboard makes those trade-offs impossible to ignore.
 
 ---
 
-## Features
+## Dashboard features
 
-- 🗺️ **Interactive map of Scotland** — click any dot to load that area's full scorecard; pan and zoom freely
-- ⚖️ **Live weight sliders** — drag Readiness vs Distribution sliders to re-score and re-rank all areas in real time
-- 🕸️ **Radar chart** — all seven dimensions at a glance; burden axes are flipped so a bigger polygon always means a better profile
-- 📊 **Priority matrix** — Readiness % vs Distribution % scatter, quadrant-labelled to identify binding constraints
-- 🔴 **Risk-flag chips** — automatically raised when burden indicators exceed a threshold
-- 💼 **Jobs breakdown** — construction vs operational vs indirect, with the equity caveat that permanent jobs are far fewer
-- 🔍 **Compare mode** — select two areas to show side-by-side scorecards and an overlaid radar
-- 📋 **Ranked table** — all areas sorted by weighted total, updates live with every slider move
-- 🟡 **Evidence confidence meter** — high / medium / low rating per indicator, gating the recommendation category
+- 🗺️ **Interactive map** — all 32 council areas, click to select, 6 colour-by modes (recommendation, burden, connectivity, deprivation, land reuse, score)
+- ⚖️ **Live weight sliders** — Readiness vs Distribution; re-scores and re-ranks all 32 areas in real time
+- 🕸️ **Radar chart** — 7 dimensions at a glance; burden axes flipped so larger = better
+- 📊 **Priority matrix** — Readiness % vs Distribution %, dot-sized by population, quadrant-labelled
+- 🏥 **McLellan health risk flags** — diesel generator risk, urban heat island, noise nuisance, water competition (McLellan, Lancet 2026)
+- 🌿 **Renewable energy advantage flag** — SSEN SHEPD areas near offshore/onshore wind generation
+- 📋 **Responsible AI governance checklist** — Scottish AI Strategy 2026–2031, 8 checks
+- 🏴󠁧󠁢󠁳󠁣󠁴󠁿 **NPF National Outcomes alignment** — 4 National Performance Framework outcomes with progress bars
+- 👤 **Area profile** — demographics, geography, economics per council (population, density, age, employment, earnings, GVA, DNO zone)
+- 🔍 **Compare mode** — side-by-side scorecards with overlaid radar chart
+- ⚠️ **"Not in scope" section** — explicit list of what a screening tool cannot replace
+
+---
+
+## Data — what is real vs estimated
+
+### ✅ Real data (all 32 councils)
+
+| Column | Status | Source |
+|---|---|---|
+| `digital_connectivity` | **Real** — Ofcom FTTP % per council | [Ofcom Connected Nations 2025](https://www.ofcom.org.uk/phones-and-broadband/coverage-and-speeds/connected-nations-20252) via [ThinkBroadband](https://labs.thinkbroadband.com/local/scotland) — fetched June 2026 |
+| `infrastructure_reuse` | **Real** — derelict + urban vacant land (ha) | [Scottish Vacant & Derelict Land Survey 2024, Table 2](https://www.gov.scot/publications/scottish-vacant-derelict-land-statistics-2024/) |
+| `environmental_burden` | **Real** — % river water bodies NOT at Good/High status per sub-basin | [SEPA Water Classification Hub ArcGIS API](https://map.sepa.org.uk/server/rest/services/Open/Hydrography/MapServer/4) — 2,410 water bodies, mapped to council areas via sub-basin |
+| `vulnerability_exposure` | **Real** — % datazones in most deprived 20% | [SIMD 2020, Scottish Government](https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/) |
+| `simd_decile` | **Real** — median SIMD decile per council | SIMD 2020 |
+| `urban_rural_class` | **Real** | [Scottish Government Urban Rural Classification 2022](https://www.gov.scot/publications/scottish-government-urban-rural-classification-2022/) |
+| `population` | **Real** — mid-2023 estimate | [NRS Scotland Mid-Year Population Estimates 2023](https://www.nrscotland.gov.uk/) |
+| `area_km2` | **Real** | OS / Scottish Government boundaries |
+| `median_age` | **Real** | [Scotland Census 2022](https://www.scotlandscensus.gov.uk/) |
+| `employment_rate_pct` | **Real** | [ONS Annual Population Survey 2023](https://www.ons.gov.uk/) |
+| `median_weekly_earnings_gbp` | **Real** | [ONS Annual Survey of Hours & Earnings (ASHE) 2023](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/ashe) |
+| `gva_index` | **Real** — Scotland=100 | [ONS Regional GVA (balanced) 2023](https://www.ons.gov.uk/economy/grossvalueaddedgva) |
+| `dno_zone` | **Real** — SP Distribution or SSEN SHEPD | [SP Energy Networks PES 18](https://www.energybrokers.co.uk/electricity/pes-areas/pes-area-18); [SSEN SHEPD PES 17](https://www.energybrokers.co.uk/electricity/pes-areas/pes-area-17) |
+| `community_benefit` | **Formula-derived from real data** — (SIMD deprivation % × 1.2) + ((100 − employment rate) × 0.9) | SIMD 2020 + ONS APS 2023 — formula weights are transparent but subjective |
+
+### ⚠️ Estimated (all 32 councils)
+
+| Column | Basis | How to replace |
+|---|---|---|
+| `energy_capacity` | DNO zone proxy: SP Distribution areas (central belt) scored higher than SSEN SHEPD (north) | [SSEN Distribution Data Portal](https://data.ssen.co.uk/); [SPEN DFES 2024](https://www.spenergynetworks.co.uk/) — extract substation capacity by council |
+| `future_grid_headroom` | NESO FES 2025 directional: central belt more constrained; Scotland can absorb up to 20% of GB data centre demand | [NESO FES 2025 Dataworkbook](https://www.neso.energy/document/364696/download) — sheets BB1 (zone data) and ED1 (data centre demand by scenario) |
+
+### ❌ Illustrative only
+
+| Column | Note | Real source |
+|---|---|---|
+| `jobs_construction/operational/indirect` | Scale estimates only; operational jobs deliberately far fewer than construction | [NOMIS / Business Register & Employment Survey (BRES)](https://www.nomisweb.co.uk/) |
+
+---
+
+## Key findings from the real data
+
+1. **The Forth catchment paradox:** Falkirk, West Lothian, Fife, Edinburgh, Midlothian, Clackmannanshire — Scotland's most infrastructure-connected corridor — sit in the Forth sub-basin where 83% of river water bodies are NOT at Good/High ecological status (SEPA 2024). The most technically attractive areas carry the greatest existing environmental burden.
+
+2. **Glasgow's equity dilemma:** Glasgow scores highest for community benefit (44% of population in most deprived 20%; high unemployment) but also faces high environmental burden (Clyde sub-basin, 72% not at Good/High). The community that would gain most from investment is the same community bearing the existing burden.
+
+3. **The renewable advantage:** SSEN SHEPD areas — Highland, Aberdeenshire, Orkney, Shetland — have access to significant offshore and onshore renewable generation and low environmental burden. A data centre in Highland could run on near-zero carbon electricity. But community benefit potential is low (these are prosperous, low-deprivation areas), so community benefit agreements and local procurement would be essential.
+
+4. **Digital divide:** Shetland (23%), Na h-Eileanan Siar (25%) and Argyll & Bute (32%) have the weakest digital connectivity, making them unsuitable without major connectivity investment first.
 
 ---
 
 ## Scoring methodology
 
-All scoring is a **transparent weighted composite indicator** — no machine learning, no pre-trained models.
+All scoring is a **transparent weighted composite indicator — no machine learning, no pre-trained models.**
 
 ### Steps
 
-1. **Normalise** each raw indicator to 0–5 using min-max scaling across all candidate areas.
+1. **Normalise** each raw indicator to 0–5 using min-max scaling across all 32 council areas. Adding or removing areas rescales all scores.
 2. **Group** into two buckets:
    - **Readiness** = Energy Capacity + Digital Connectivity + Future Grid Headroom + Infrastructure Reuse
    - **Distribution** = Community Benefit (positive) − Environmental Burden − Vulnerability Exposure
-3. **Compute** a benefit-to-burden ratio = community benefit score ÷ sum of burden scores.
-4. **Apply weights** (user-adjustable) to compute a weighted total out of 100.
-5. **Map** to a recommendation category:
+3. **Benefit-to-burden ratio** = community_benefit_score ÷ (environmental_burden_score + vulnerability_exposure_score). Below 1.0 = burdens outweigh benefits.
+4. **Apply weights** (user-adjustable via sliders) to compute a weighted total out of 100.
+5. **Recommendation category:**
    - 🟢 Strong candidate (score ≥ 70, confidence medium+)
    - 🟠 Possible with safeguards (score ≥ 50)
    - 🔴 Not suitable now (score < 50)
-   - 🔵 Needs further evidence (low overall confidence, regardless of score)
+   - 🔵 Needs further evidence (overall confidence low)
 
-### Indicators
+### Community benefit formula
 
-| Indicator | Group | Direction | Data status |
-|---|---|---|---|
-| Energy Capacity | Readiness | Higher = better | ⚠️ Estimated |
-| Digital Connectivity | Readiness | Higher = better | ⚠️ Estimated from urban/rural pattern |
-| Future Grid Headroom | Readiness | Higher = better | ⚠️ Estimated |
-| Infrastructure Reuse | Readiness | Higher = better | ⚠️ Estimated |
-| Community Benefit | Distribution | Higher = better | ⚠️ SIMD-informed estimate |
-| Environmental Burden | Distribution | Higher = **worse** | ⚠️ SEPA-informed estimate |
-| Vulnerability Exposure | Distribution | Higher = **worse** | ✅ Real — SIMD 2020 deprivation % |
+`community_benefit = min(85, vulnerability_exposure × 1.2 + (100 − employment_rate) × 0.9)`
+
+Where both inputs are real data (SIMD 2020 and ONS APS 2023). The coefficients (1.2, 0.9) are transparent but subjective. Higher scores = more potential for investment to reach people who need it.
+
+### McLellan (Lancet, 2026) health risk flags
+
+Raised automatically when:
+- **Diesel generator risk**: population density > 500/km² — pollution spikes from emergency generator testing
+- **Urban heat island risk**: Urban class + environmental burden > 60% — waste heat compounds existing pressures
+- **Noise nuisance**: population density > 300/km² — continuous low-frequency noise, sleep disturbance
+- **Water competition**: environmental burden > 75% — data centre cooling demands on already-pressured catchments
+
+### Responsible AI governance
+
+Based on Scotland's AI Strategy 2026–2031. The dashboard checks 8 criteria; 5 are met by design (transparent scoring, human final approval, equity given equal weight, confidence ratings, sources documented). 3 require post-screening action (community consultation, EIA, equalities impact assessment).
+
+### National Performance Framework alignment
+
+The dashboard maps to four NPF National Outcomes:
+- **Environment** — measured via environmental_burden (SEPA)
+- **Communities** — measured via vulnerability_exposure (SIMD)
+- **Economy / Fair Work** — measured via community_benefit (SIMD + employment)
 
 ---
 
-## Data — what's real and what's estimated
+## What this tool does NOT cover
 
-### ✅ Real data used
+This is a screening tool. A positive score means an area warrants investigation — not that a site is approved.
 
-| Column | Real value used | Source |
-|---|---|---|
-| `vulnerability_exposure` | % of datazones in most deprived 20% per council area | [SIMD 2020 — Scottish Government](https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/) |
-| `simd_decile` | Median SIMD decile per council area | [SIMD 2020 — Scottish Government](https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/) |
-| `urban_rural_class` | Official classification per council | [Scottish Government Urban Rural Classification 2022](https://www.gov.scot/publications/scottish-government-urban-rural-classification-2022/) |
-| `lat`, `lon` | Council area centroid coordinates | [Spatial Data Scotland](https://spatialdata.gov.scot/) |
+**Environmental & physical (require EIA):**
+- Site-level water consumption vs source capacity
+- Flood risk and climate change projections
+- Noise propagation modelling
+- Operational carbon footprint
+- Green space / canopy loss assessment
+- Chemical discharge from cooling systems
 
-**Real vulnerability values used (SIMD 2020 — % of datazones in most deprived 20% of Scotland):**
+**Community & social:**
+- Community consultation — no public voice mechanism
+- Cumulative impact — multiple concurrent sites in one area
+- Skills gap / workforce pipeline for operational jobs
+- Equalities impact assessment
 
-| Council Area | % most deprived 20% | SIMD Decile |
-|---|---|---|
-| Glasgow City | 44% | 2 |
-| Dundee City | 38% | 3 |
-| Falkirk | 27% | 4 |
-| Fife | 20% | 5 |
-| West Lothian | 20% | 5 |
-| Highland | 10% | 6 |
-| Argyll & Bute | 10% | 7 |
-| Aberdeenshire | 3% | 8 |
-
-**Real digital connectivity values used (Ofcom Connected Nations 2025 — full-fibre FTTP % coverage):**
-
-| Council Area | FTTP % | Gigabit-capable % | DNO Zone |
-|---|---|---|---|
-| Glasgow City | 91% | 95% | SP Distribution (PES 18) |
-| Dundee City | 88% | 96% | SSEN SHEPD (PES 17) |
-| West Lothian | 84% | 95% | SP Distribution (PES 18) |
-| Fife | 78% | 88% | SP Distribution (PES 18) |
-| Falkirk | 74% | 96% | SP Distribution (PES 18) |
-| Highland | 70% | 70% | SSEN SHEPD (PES 17) |
-| Aberdeenshire | 55% | 55% | SSEN SHEPD (PES 17) |
-| Argyll & Bute | 32% | 32% | SSEN SHEPD (PES 17) |
-
-Source: [ThinkBroadband Scotland LA data](https://labs.thinkbroadband.com/local/scotland) (mirrors Ofcom Connected Nations 2025, updated weekly). Highland and Aberdeenshire have no cable network so gigabit = FTTP only.
-
-**DNO zone mapping used for energy estimates:**
-- **SP Distribution (PES Area 18)** covers Falkirk, Glasgow, West Lothian, Fife — central belt, better interconnected grid
-- **SSEN SHEPD (PES Area 17)** covers Highland, Aberdeenshire, Argyll & Bute, Dundee — more variable; significant renewable generation but transmission constraints to load centres
-
-### ⚠️ Estimated / illustrative values
-
-These columns use plausible estimates informed by the data sources below, but **have not been extracted directly from a downloaded dataset**. Confidence is marked as `low` or `medium` accordingly, and the dashboard displays this prominently.
-
-| Column | Basis for estimate | Real source to replace it |
-|---|---|---|
-| `energy_capacity` | Urban > rural proxy; central belt higher than remote | [SSEN Distribution Data Portal](https://data.ssen.co.uk/) — Network Capacity heatmaps; [Scottish Energy Statistics](https://www.gov.scot/collections/quarterly-energy-statistics-scotland/) |
-| `digital_connectivity` | Urban/rural pattern: Glasgow ~88%, Argyll & Bute ~32% | [Ofcom Connected Nations 2025](https://www.ofcom.org.uk/phones-and-broadband/coverage-and-speeds/connected-nations-20252) — download LA-level gigabit % |
-| `future_grid_headroom` | NESO FES 2025 direction (Scotland can absorb 20% of GB DC demand) | [NESO FES 2025 dataworkbook](https://www.neso.energy/document/364696/download) — sheets BB1/ED1, SEPD/SHEPD/SPTL/SHETL zones |
-| `infrastructure_reuse` | Rural areas score higher on open/derelict land availability | [Scottish Vacant & Derelict Land Survey 2024](https://www.gov.scot/publications/scottish-vacant-derelict-land-statistics-2024/) — hectares by council |
-| `community_benefit` | SIMD-informed: deprived urban areas have more potential beneficiaries | SIMD 2020 + [Scottish Annual Business Statistics 2023](https://www.gov.scot/publications/scottish-annual-business-statistics-2023/) |
-| `environmental_burden` | Eastern Scotland higher water stress (SEPA); urban heat + noise penalty | [SEPA Water Classification Hub](https://informatics.sepa.org.uk/WaterClassificationHub/); [SEPA Data Centres regulatory guide](https://beta.sepa.scot/topics/energy/data-centres/) |
-| `jobs_*` | Scale estimates only; operational jobs deliberately low | [NOMIS / BRES](https://www.nomisweb.co.uk/); [Scottish Annual Business Statistics 2023](https://www.gov.scot/publications/scottish-annual-business-statistics-2023/) |
+**Governance & legal:**
+- Land ownership and acquisition feasibility
+- Planning permission status (NPF4 compliance)
+- National security review (NCSC)
+- Site-specific EIA and ecological survey
 
 ---
 
 ## Full data source list
 
-These are the datasets and reports the tool draws on or is designed to integrate with:
-
 | Source | Type | Used for |
 |---|---|---|
-| [SIMD 2020 — Scottish Government](https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/) | Dataset | Vulnerability exposure (real), SIMD decile (real), community benefit proxy |
-| [Scottish Government Urban Rural Classification 2022](https://www.gov.scot/publications/scottish-government-urban-rural-classification-2022/) | Dataset | Urban/rural classification per council (real) |
-| [Ofcom Connected Nations 2025](https://www.ofcom.org.uk/phones-and-broadband/coverage-and-speeds/connected-nations-20252) | Report + Data | Digital connectivity % by local authority |
-| [NESO Future Energy Scenarios 2025](https://www.neso.energy/publications/future-energy-scenarios-fes#FES-2025-Key-message-and-actions) | Dataset | Grid headroom, future energy demand — FES dataworkbook sheets BB1, ED1 |
-| [NESO FES 2025 Dataworkbook](https://www.neso.energy/document/364696/download) | Dataset | Peak demand by zone (SEPD, SHEPD, SPTL, SHETL); data centre demand sheet ED1 |
-| [SSEN Distribution Data Portal](https://data.ssen.co.uk/) | Dataset + Map | Network capacity heatmaps, embedded capacity register, substation ratings |
-| [Scottish Vacant & Derelict Land Survey 2024](https://www.gov.scot/publications/scottish-vacant-derelict-land-statistics-2024/) | Dataset | Infrastructure reuse — brownfield hectares by council |
-| [SEPA Water Classification Hub](https://informatics.sepa.org.uk/WaterClassificationHub/) | Dashboard + Dataset | Environmental burden — water quality and stress by catchment |
-| [SEPA Data Centres Regulatory Guide](https://beta.sepa.scot/topics/energy/data-centres/) | Report | Environmental regulation scope for data centres in Scotland |
-| [SEPA Environmental Data](https://www.sepa.org.uk/environment/environmental-data/) | Dataset | Wider environmental quality indicators |
-| [Scottish Energy Statistics — Quarterly Bulletins](https://www.gov.scot/collections/quarterly-energy-statistics-scotland/) | Dataset | Energy capacity and generation by region |
-| [Domestic Energy Performance Certificates](https://statistics.gov.scot/data/domestic-energy-performance-certificates) | Dataset | Local energy efficiency context |
-| [Scottish Annual Business Statistics 2023](https://www.gov.scot/publications/scottish-annual-business-statistics-2023/) | Dataset | Employment and turnover by sector; jobs baseline |
-| [NOMIS / BRES](https://www.nomisweb.co.uk/) | Dataset | Jobs estimates by sector and local authority |
-| [Scotland's AI Strategy 2026–2031](https://www.gov.scot/binaries/content/documents/govscot/publications/strategy-plan/2026/03/scotlands-ai-strategy-2026-2031/documents/ai-strategy-scotland/ai-strategy-scotland/govscot%3Adocument/ai-strategy-scotland.pdf) | Report | Policy alignment; responsible AI infrastructure principles |
-| [Business Insights & Conditions Survey Wave 155](https://www.gov.scot/publications/bics-weighted-scotland-estimates-data-to-wave-155/documents/) | Dataset | Business AI adoption by sector (row 467) |
-| [Spatial Data Scotland](https://spatialdata.gov.scot/) | Repository | Geographic boundaries and coordinates |
-| [find.data.gov.scot](https://find.data.gov.scot) | Search Engine | Discovery of Scottish public datasets |
-| [Ordnance Survey Data Hub](https://osdatahub.os.uk/) | Dataset + Map | Topographic and land use mapping |
-| [Digimap / OS Collection](https://digimap.edina.ac.uk/os) | Map | Detailed topographic OS data for the UK |
-| [Scotland's Labour Market — APS 2021](https://www.gov.scot/publications/scotlands-labour-market-people-places-regions-protected-characteristics-statistics-annual-population-survey-2021/) | Report | Labour market by protected characteristics |
-| [UNESCO Ethics of AI](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics) | Report | Ethical framework context |
-| [The Lancet — AI data centre health impacts (McLellan, 2026)](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(26)00033-4/fulltext) | Report | Public health burden justification |
+| [SIMD 2020](https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/) | Dataset | Vulnerability exposure, SIMD decile, community benefit formula |
+| [Ofcom Connected Nations 2025](https://www.ofcom.org.uk/phones-and-broadband/coverage-and-speeds/connected-nations-20252) | Dataset | Digital connectivity FTTP % (all 32 councils) |
+| [SEPA Water Classification Hub](https://informatics.sepa.org.uk/WaterClassificationHub/) | ArcGIS API | Environmental burden (2,410 river water bodies) |
+| [SVDLS 2024](https://www.gov.scot/publications/scottish-vacant-derelict-land-statistics-2024/) | Dataset | Infrastructure reuse — derelict + vacant land (ha) |
+| [Scottish Government Urban Rural Classification 2022](https://www.gov.scot/publications/scottish-government-urban-rural-classification-2022/) | Dataset | Urban/rural/suburban classification |
+| [NRS Scotland Mid-2023 Population Estimates](https://www.nrscotland.gov.uk/) | Dataset | Population, population density |
+| [Scotland Census 2022](https://www.scotlandscensus.gov.uk/) | Dataset | Median age |
+| [ONS Annual Population Survey 2023](https://www.ons.gov.uk/) | Dataset | Employment rate |
+| [ONS ASHE 2023](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/ashe) | Dataset | Median weekly earnings |
+| [ONS Regional GVA 2023](https://www.ons.gov.uk/economy/grossvalueaddedgva) | Dataset | GVA index (Scotland=100) |
+| [SP Energy Networks PES 18](https://www.energybrokers.co.uk/electricity/pes-areas/pes-area-18) | Reference | DNO zone mapping (central/southern Scotland) |
+| [SSEN SHEPD PES 17](https://www.energybrokers.co.uk/electricity/pes-areas/pes-area-17) | Reference | DNO zone mapping (northern Scotland) |
+| [NESO FES 2025](https://www.neso.energy/publications/future-energy-scenarios-fes) | Dataset | Future grid headroom directional estimate |
+| [SSEN Distribution Data Portal](https://data.ssen.co.uk/) | Dataset | Energy capacity estimate basis |
+| [Scotland's AI Strategy 2026–2031](https://www.gov.scot/binaries/content/documents/govscot/publications/strategy-plan/2026/03/scotlands-ai-strategy-2026-2031/documents/ai-strategy-scotland/ai-strategy-scotland/govscot%3Adocument/ai-strategy-scotland.pdf) | Report | Responsible AI governance checklist |
+| [SEPA Data Centres Regulatory Guide](https://beta.sepa.scot/topics/energy/data-centres/) | Report | Environmental regulation scope |
+| [McLellan, The Lancet, 2026](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(26)00033-4/fulltext) | Report | Public health risk flags (diesel, heat, noise, water) |
+| [Business Insights & Conditions Survey Wave 155](https://www.gov.scot/publications/bics-weighted-scotland-estimates-data-to-wave-155/documents/) | Dataset | Business AI adoption context |
+| [Scottish Annual Business Statistics 2023](https://www.gov.scot/publications/scottish-annual-business-statistics-2023/) | Dataset | Employment context |
+| [NOMIS / BRES](https://www.nomisweb.co.uk/) | Dataset | Jobs figures (illustrative scale only) |
 
 **Context articles:**
-- [BBC: Scottish data centres using enough water to fill 27 million bottles a year](https://www.bbc.co.uk/news/articles/c77zxx43x4vo)
+- [BBC: Scottish data centres using 27M bottles of water/year](https://www.bbc.co.uk/news/articles/c77zxx43x4vo)
 - [BBC: Data centres to be expanded across UK as concerns mount](https://www.bbc.co.uk/news/articles/clyr9nx0jrzo)
 - [BBC: Could a huge data centre revitalise Ayrshire — or ruin it?](https://www.bbc.co.uk/news/articles/c2d1ny161yyo)
-- [BBC: Miliband says climate impact of data centres is uncertain](https://www.bbc.co.uk/news/articles/cx2drxgz7x8o)
-- [BBC: UK firm pioneers data centres using lampposts](https://www.bbc.co.uk/news/articles/c98r4e594p7o)
 - [Envirolink: Scotland's Data Center Climate Policy Falls Short on AI Energy Demands](https://www.envirolink.org/2026/05/25/scotlands-data-center-climate-policy-falls-short-on-ai-energy-demands/)
 
 ---
@@ -205,35 +225,24 @@ Open **http://localhost:8501** in your browser.
 
 ```
 No-Bias-Intended/
-├── app.py          # Streamlit UI — layout, charts, map, interactivity
-├── scoring.py      # Scoring logic — normalisation, weighting, ratio, recommendations
+├── app.py           # Streamlit UI — all layout, charts, map, interactivity
+├── scoring.py       # Scoring logic — normalisation, weighting, ratio, recommendations
 ├── requirements.txt
 └── data/
-    └── areas.csv   # Current data (mix of real SIMD + estimated indicators — see table above)
+    └── areas.csv    # All 32 Scottish council areas (see data quality table above)
 ```
 
 `scoring.py` has no Streamlit dependency and can be unit-tested independently.
 
 ---
 
-## Swapping in real data
+## Swapping in better data
 
-Replace `data/areas.csv` with a file matching the schema below. No code changes needed.
+Replace `data/areas.csv` with a file matching the column schema. No code changes needed.
 
-```
-area_name, lat, lon, urban_rural_class, simd_decile,
-energy_capacity, energy_capacity_confidence,
-digital_connectivity, digital_connectivity_confidence,
-future_grid_headroom, future_grid_headroom_confidence,
-infrastructure_reuse, infrastructure_reuse_confidence,
-community_benefit, community_benefit_confidence,
-environmental_burden, environmental_burden_confidence,
-vulnerability_exposure, vulnerability_exposure_confidence,
-jobs_construction, jobs_operational, jobs_indirect
-```
-
-- Raw indicator columns: any numeric scale (the tool normalises them 0–5)
-- `*_confidence` columns: `"high"`, `"medium"`, or `"low"`
+The two columns most worth improving:
+1. **`energy_capacity`** — download [SSEN Distribution Data Portal](https://data.ssen.co.uk/) network capacity heatmaps, extract MW headroom by GSP, aggregate to council area
+2. **`future_grid_headroom`** — download [NESO FES 2025 dataworkbook](https://www.neso.energy/document/364696/download), open sheets BB1 (zone-level data) and ED1 (data centre demand by scenario), filter for SEPD/SHEPD/SPTL/SHETL zones
 
 ---
 
@@ -242,20 +251,11 @@ jobs_construction, jobs_operational, jobs_indirect
 | Policy / Framework | Relevance |
 |---|---|
 | [Scotland's AI Strategy 2026–2031](https://www.gov.scot/binaries/content/documents/govscot/publications/strategy-plan/2026/03/scotlands-ai-strategy-2026-2031/documents/ai-strategy-scotland/ai-strategy-scotland/govscot%3Adocument/ai-strategy-scotland.pdf) | Responsible, people-centred AI infrastructure |
+| National Performance Framework — Environment, Communities, Economy, Fair Work | 4 NPF outcomes mapped in every scorecard |
 | Just Transition principles | Benefits and costs of economic change distributed fairly |
 | National Planning Framework 4 (NPF4) | Sustainability and community benefit in infrastructure siting |
-| [UNESCO Ethics of AI](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics) | Ethical guardrails against bias and harm |
 | [SEPA regulatory framework](https://beta.sepa.scot/topics/energy/data-centres/) | Environmental compliance for data centre operations |
-
----
-
-## Limitations & caveats
-
-- Most indicator values are estimates — confidence levels in the dashboard reflect this honestly
-- Scores are relative to the candidate set; adding or removing areas rescales all scores
-- Jobs figures are illustrative; real estimates require site-specific economic modelling
-- Environmental burden is a composite proxy; a full EIA would be required before any real decision
-- The benefit-to-burden ratio uses normalised scores, not absolute impact assessments
+| [UNESCO Ethics of AI](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics) | Ethical guardrails against bias and harm |
 
 ---
 
