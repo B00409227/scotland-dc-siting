@@ -127,6 +127,12 @@ if "selected_area" not in st.session_state:
 def load_data():
     return load_sample_data("data/areas.csv")
 
+@st.cache_data
+def load_geojson():
+    import json
+    with open("data/scotland_councils.geojson") as f:
+        return json.load(f)
+
 raw_df     = load_data()
 area_names = sorted(raw_df["area_name"].tolist())
 
@@ -164,12 +170,6 @@ with st.sidebar:
         index=0,
         key="map_colour_by",
     )
-    map_size_by_pop = st.checkbox(
-        "Scale dot size by population",
-        value=False,
-        key="map_size_pop",
-    )
-
     st.divider()
     st.subheader("Select Location")
     st.caption("Click a dot on the map, or choose below.")
@@ -207,138 +207,139 @@ scored_df = compute_scores(raw_df, weights)
 scored_df = scored_df.sort_values("weighted_total", ascending=False).reset_index(drop=True)
 
 
-# ── Map builder ───────────────────────────────────────────────────────────────
+# ── Map builder (choropleth boundaries) ──────────────────────────────────────
 def build_map(df: pd.DataFrame, selected: str,
-              colour_label: str, size_by_pop: bool) -> go.Figure:
+              colour_label: str) -> go.Figure:
 
-    col_info = MAP_COLOUR_OPTIONS[colour_label]
-    colour_col = col_info[0]
-    colorscale = col_info[1]
-    unit       = col_info[3]
+    geojson      = load_geojson()
+    col_info     = MAP_COLOUR_OPTIONS[colour_label]
+    colour_col   = col_info[0]
+    colorscale   = col_info[1]
+    unit         = col_info[3]
     use_discrete = (colour_col == "recommendation")
 
-    sel_mask = df["area_name"] == selected
-    unsel_df = df[~sel_mask]
-    sel_df   = df[sel_mask]
+    # Recommendation → integer for discrete colorscale
+    cat_order = list(CATEGORY_COLOURS.keys())   # consistent ordering
+    cat_colors = list(CATEGORY_COLOURS.values())
 
-    # Dot sizes
-    if size_by_pop:
-        max_pop  = df["population"].max()
-        sizes_unsel = (unsel_df["population"] / max_pop * 30 + 8).tolist()
-        sizes_sel   = (sel_df["population"]   / max_pop * 30 + 8).tolist()
-    else:
-        sizes_unsel = [16] * len(unsel_df)
-        sizes_sel   = [22]
+    # Stepped colorscale for discrete recommendation categories
+    n = len(cat_order)
+    stepped = []
+    for i, c in enumerate(cat_colors):
+        stepped.append([i / n,       c])
+        stepped.append([(i + 1) / n, c])
 
-    # Build hover template with demographic snapshot
+    # Rich hover template shown on every boundary hover
     hover_tmpl = (
         "<b>%{customdata[0]}</b><br>"
-        "Pop: %{customdata[6]:,} · %{customdata[7]} km²<br>"
-        "Score: %{customdata[1]:.1f}/100 · B:B %{customdata[2]:.1f}×<br>"
-        "SIMD decile: %{customdata[3]} · Deprivation: %{customdata[4]}%<br>"
-        "Env burden: %{customdata[5]}%<br>"
-        "<i>Click to select</i><extra></extra>"
-    )
-    hover_sel_tmpl = (
-        "<b>%{customdata[0]}</b> ✓ selected<br>"
-        "Pop: %{customdata[6]:,} · %{customdata[7]} km²<br>"
-        "Score: %{customdata[1]:.1f}/100 · B:B %{customdata[2]:.1f}×<br>"
-        "SIMD decile: %{customdata[3]} · Deprivation: %{customdata[4]}%<br>"
-        "Env burden: %{customdata[5]}%<extra></extra>"
+        "<span style='font-size:11px'>━━━━━━━━━━━━━━━━━━━━</span><br>"
+        "<b>Score: %{customdata[1]:.1f} / 100</b>"
+        "  ·  B:B ratio: <b>%{customdata[2]:.1f}×</b><br>"
+        "Recommendation: <b>%{customdata[3]}</b><br>"
+        "<span style='font-size:11px'>━━━━━━━━━━━━━━━━━━━━</span><br>"
+        "SIMD decile: %{customdata[4]}/10"
+        "  ·  Deprivation: %{customdata[5]}%<br>"
+        "Env. burden: %{customdata[6]:.0f}%"
+        "  ·  FTTP: %{customdata[7]}%<br>"
+        "Population: %{customdata[8]:,}"
+        "  ·  %{customdata[9]}<br>"
+        "Employment: %{customdata[10]}%"
+        "  ·  GVA index: %{customdata[11]}<br>"
+        "Derelict land: %{customdata[12]:.0f} ha"
+        "  ·  DNO: %{customdata[13]}<br>"
+        "<span style='font-size:11px'>━━━━━━━━━━━━━━━━━━━━</span><br>"
+        "<i>Click to load full scorecard below</i><extra></extra>"
     )
 
-    def make_customdata(sub):
-        return sub[[
-            "area_name", "weighted_total", "benefit_to_burden_ratio",
-            "simd_decile", "vulnerability_exposure", "environmental_burden",
-            "population", "area_km2"
-        ]].values
+    cd = df[[
+        "area_name", "weighted_total", "benefit_to_burden_ratio",
+        "recommendation", "simd_decile", "vulnerability_exposure",
+        "environmental_burden", "digital_connectivity", "population",
+        "urban_rural_class", "employment_rate_pct", "gva_index",
+        "infrastructure_reuse", "dno_zone",
+    ]].values
+
+    if use_discrete:
+        z_vals = [cat_order.index(r) if r in cat_order else 0
+                  for r in df["recommendation"]]
+        cs     = stepped
+        showscale = False
+    else:
+        z_vals    = df[colour_col].tolist()
+        cs        = colorscale
+        showscale = True
 
     fig = go.Figure()
 
+    # ── Choropleth layer — filled council boundaries ──────────────────────────
+    fig.add_trace(go.Choroplethmap(
+        geojson=geojson,
+        locations=df["area_name"].tolist(),
+        featureidkey="properties.council_name",
+        z=z_vals,
+        colorscale=cs,
+        showscale=showscale,
+        marker=dict(
+            line=dict(color="white", width=1.2),
+            opacity=0.82,
+        ),
+        customdata=cd,
+        hovertemplate=hover_tmpl,
+        colorbar=dict(
+            title=dict(text=f"{colour_label}<br><sup>{unit}</sup>", side="right"),
+            thickness=14, len=0.55, y=0.5, tickfont=dict(size=10),
+        ) if showscale else None,
+        showlegend=False,
+        name="councils",
+    ))
+
+    # Discrete legend (invisible scatter traces)
     if use_discrete:
-        # Legend traces (invisible)
         for cat, colour in CATEGORY_COLOURS.items():
             fig.add_trace(go.Scattermap(
                 lat=[None], lon=[None], mode="markers",
-                marker=dict(size=12, color=colour),
+                marker=dict(size=14, color=colour),
                 name=cat, showlegend=True, hoverinfo="skip",
             ))
-        # Unselected dots
-        fig.add_trace(go.Scattermap(
-            lat=unsel_df["lat"], lon=unsel_df["lon"], mode="markers",
-            marker=dict(
-                size=sizes_unsel,
-                color=[CATEGORY_COLOURS.get(r, "#555") for r in unsel_df["recommendation"]],
-                opacity=0.85,
-            ),
-            text=unsel_df["area_name"],
-            customdata=make_customdata(unsel_df),
-            hovertemplate=hover_tmpl,
-            showlegend=False,
-        ))
-    else:
-        # Continuous colorscale — all unselected points
-        vals = df[colour_col].tolist()
-        vmin, vmax = min(vals), max(vals)
-        unsel_vals = unsel_df[colour_col].tolist()
-        fig.add_trace(go.Scattermap(
-            lat=unsel_df["lat"], lon=unsel_df["lon"], mode="markers",
-            marker=dict(
-                size=sizes_unsel,
-                color=unsel_vals,
-                colorscale=colorscale,
-                cmin=vmin, cmax=vmax,
-                opacity=0.9,
-                colorbar=dict(
-                    title=dict(text=f"{colour_label}<br><sup>{unit}</sup>", side="right"),
-                    thickness=14, len=0.6, y=0.5,
-                    tickfont=dict(size=10),
-                ),
-            ),
-            text=unsel_df["area_name"],
-            customdata=make_customdata(unsel_df),
-            hovertemplate=hover_tmpl,
-            showlegend=False,
-        ))
 
-    # Selected dot — white ring then coloured dot
-    if len(sel_df) > 0:
-        if use_discrete:
-            sel_colour = CATEGORY_COLOURS.get(sel_df.iloc[0]["recommendation"], "#555")
-        else:
-            sel_colour = "#1565c0"  # ring colour independent of colorscale
-
-        fig.add_trace(go.Scattermap(           # white ring
-            lat=sel_df["lat"], lon=sel_df["lon"], mode="markers",
-            marker=dict(size=int(sizes_sel[0]) + 12, color="white", opacity=1.0),
+    # ── Selected area — bright outline pin ────────────────────────────────────
+    sel = df[df["area_name"] == selected]
+    if len(sel):
+        rec_colour = CATEGORY_COLOURS.get(sel.iloc[0]["recommendation"], "#1565c0")
+        # White halo then coloured star for the selected area centroid
+        fig.add_trace(go.Scattermap(
+            lat=sel["lat"], lon=sel["lon"], mode="markers+text",
+            marker=dict(size=22, color="white", opacity=1.0),
             hoverinfo="skip", showlegend=False,
         ))
-        fig.add_trace(go.Scattermap(           # coloured dot
-            lat=sel_df["lat"], lon=sel_df["lon"], mode="markers",
-            marker=dict(
-                size=int(sizes_sel[0]),
-                color=[float(sel_df.iloc[0][colour_col])] if not use_discrete else [sel_colour],
-                colorscale=colorscale if not use_discrete else None,
-                cmin=vmin if not use_discrete else None,
-                cmax=vmax if not use_discrete else None,
-                showscale=False,
-            ),
-            text=sel_df["area_name"],
-            customdata=make_customdata(sel_df),
-            hovertemplate=hover_sel_tmpl,
-            showlegend=False,
+        fig.add_trace(go.Scattermap(
+            lat=sel["lat"], lon=sel["lon"], mode="markers+text",
+            marker=dict(size=14, color=rec_colour, symbol="circle"),
+            text=["▲"], textposition="top center",
+            textfont=dict(size=11, color=rec_colour),
+            hoverinfo="skip", showlegend=False, name="selected",
         ))
 
     fig.update_layout(
-        map=dict(style="carto-positron", zoom=5.2, center=dict(lat=57.0, lon=-4.2)),
+        map=dict(
+            style="carto-positron",
+            zoom=5.0,
+            center=dict(lat=57.1, lon=-4.5),
+        ),
         margin=dict(l=0, r=0, t=0, b=0),
-        height=500,
+        height=560,
         legend=dict(
             title="Recommendation", orientation="h",
             yanchor="bottom", y=1.02, xanchor="left", x=0,
+            font=dict(size=11),
         ),
         uirevision="stable",
+        hoverlabel=dict(
+            bgcolor="white",
+            font_size=12,
+            font_family="sans-serif",
+            bordercolor="#ccc",
+        ),
     )
     return fig
 
@@ -687,18 +688,20 @@ map_fig = build_map(
     scored_df,
     st.session_state.selected_area,
     map_colour_label,
-    map_size_by_pop,
 )
 map_event = st.plotly_chart(
     map_fig, on_select="rerun", selection_mode="points",
     key="map_chart", width="stretch",
 )
 
-# Handle map click
+# Handle map click — choropleth returns location; customdata[0] is the name fallback
 if map_event and hasattr(map_event, "selection") and map_event.selection.points:
     pt = map_event.selection.points[0]
-    cd = pt.get("customdata")
-    clicked = str(cd[0]) if isinstance(cd, (list, tuple)) and cd else str(cd or pt.get("text", ""))
+    # Choropleth click gives pt["location"] = the value from locations=
+    clicked = pt.get("location", "")
+    if not clicked:
+        cd = pt.get("customdata")
+        clicked = str(cd[0]) if isinstance(cd, (list, tuple)) and cd else ""
     if clicked in area_names and clicked != st.session_state.selected_area:
         st.session_state.selected_area = clicked
         st.rerun()
