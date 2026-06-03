@@ -212,13 +212,13 @@ def build_map(df: pd.DataFrame, selected: str,
     if use_discrete:
         # Legend traces (invisible)
         for cat, colour in CATEGORY_COLOURS.items():
-            fig.add_trace(go.Scattermapbox(
+            fig.add_trace(go.Scattermap(
                 lat=[None], lon=[None], mode="markers",
                 marker=dict(size=12, color=colour),
                 name=cat, showlegend=True, hoverinfo="skip",
             ))
         # Unselected dots
-        fig.add_trace(go.Scattermapbox(
+        fig.add_trace(go.Scattermap(
             lat=unsel_df["lat"], lon=unsel_df["lon"], mode="markers",
             marker=dict(
                 size=sizes_unsel,
@@ -235,7 +235,7 @@ def build_map(df: pd.DataFrame, selected: str,
         vals = df[colour_col].tolist()
         vmin, vmax = min(vals), max(vals)
         unsel_vals = unsel_df[colour_col].tolist()
-        fig.add_trace(go.Scattermapbox(
+        fig.add_trace(go.Scattermap(
             lat=unsel_df["lat"], lon=unsel_df["lon"], mode="markers",
             marker=dict(
                 size=sizes_unsel,
@@ -262,12 +262,12 @@ def build_map(df: pd.DataFrame, selected: str,
         else:
             sel_colour = "#1565c0"  # ring colour independent of colorscale
 
-        fig.add_trace(go.Scattermapbox(           # white ring
+        fig.add_trace(go.Scattermap(           # white ring
             lat=sel_df["lat"], lon=sel_df["lon"], mode="markers",
             marker=dict(size=int(sizes_sel[0]) + 12, color="white", opacity=1.0),
             hoverinfo="skip", showlegend=False,
         ))
-        fig.add_trace(go.Scattermapbox(           # coloured dot
+        fig.add_trace(go.Scattermap(           # coloured dot
             lat=sel_df["lat"], lon=sel_df["lon"], mode="markers",
             marker=dict(
                 size=int(sizes_sel[0]),
@@ -284,7 +284,7 @@ def build_map(df: pd.DataFrame, selected: str,
         ))
 
     fig.update_layout(
-        mapbox=dict(style="carto-positron", zoom=5.2, center=dict(lat=57.0, lon=-4.2)),
+        map=dict(style="carto-positron", zoom=5.2, center=dict(lat=57.0, lon=-4.2)),
         margin=dict(l=0, r=0, t=0, b=0),
         height=500,
         legend=dict(
