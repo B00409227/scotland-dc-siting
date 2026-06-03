@@ -125,7 +125,7 @@ with st.sidebar:
     st.markdown("**No Bias Intended**")
     st.caption(
         "Scottish Government Innovation Challenge · 2026\n\n"
-        "Danny Lee · Vasyl Shvets · Calum Lang · Laraine Ukwu-George · Abdul Hannaan Mohammed"
+        "Abdul Hannaan Mohammed · Calum Lang · Danny Lee · Laraine Ukwu-George · Vasyl Shvets"
     )
 
 
