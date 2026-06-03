@@ -1,33 +1,33 @@
 area_name,lat,lon,urban_rural_class,simd_decile,energy_capacity,energy_capacity_confidence,digital_connectivity,digital_connectivity_confidence,future_grid_headroom,future_grid_headroom_confidence,infrastructure_reuse,infrastructure_reuse_confidence,community_benefit,community_benefit_confidence,environmental_burden,environmental_burden_confidence,vulnerability_exposure,vulnerability_exposure_confidence,jobs_construction,jobs_operational,jobs_indirect,population,area_km2,pop_density_per_km2,median_age,employment_rate_pct,median_weekly_earnings_gbp,dno_zone,gva_index
-Aberdeen City,57.1497,-2.0943,Urban,6,62,medium,93,high,58,low,143.21,high,52,medium,61.1,high,14,high,370,85,125,232560,186,1250,37,76.2,680,SSEN SHEPD,118
-Aberdeenshire,57.1015,-2.2426,Rural,8,58,medium,55,high,65,low,91.82,high,48,medium,61.1,high,3,high,260,48,72,266650,6313,42,41,83.1,620,SSEN SHEPD,106
-Angus,56.6624,-2.8819,Rural,6,58,medium,64,high,55,low,322.32,high,48,medium,64.4,high,17,high,180,35,52,116890,2182,54,43,77.4,555,SSEN SHEPD,87
-Argyll and Bute,56.2520,-5.6068,Rural,7,38,medium,32,high,42,low,48.07,high,32,low,54.0,high,10,high,140,25,45,84670,6909,12,48,77.4,520,SSEN SHEPD,79
-Clackmannanshire,56.1082,-3.7679,Urban,4,65,medium,91,high,60,low,36.53,high,60,medium,82.8,high,27,high,120,22,38,51880,159,326,41,76.0,545,SP Distribution,86
-Dumfries and Galloway,55.0764,-3.6025,Rural,6,60,medium,74,high,52,low,738.47,high,50,medium,64.7,high,13,high,200,40,62,149370,6426,23,44,78.2,530,SP Distribution,83
-Dundee City,56.4620,-2.9707,Urban,3,62,medium,88,high,55,low,130.55,high,65,high,64.4,high,38,high,420,90,135,148960,60,2483,38,71.2,560,SSEN SHEPD,88
-East Ayrshire,55.4597,-4.2690,Suburban,4,62,medium,85,high,55,low,808.79,high,60,medium,68.2,high,26,high,190,38,58,121510,1262,96,42,74.8,535,SP Distribution,85
-East Dunbartonshire,55.9748,-4.2027,Suburban,8,65,medium,78,high,60,low,64.9,high,40,medium,71.6,high,4,high,165,32,50,107330,175,613,42,81.5,620,SP Distribution,99
-East Lothian,55.9484,-2.7510,Suburban,7,65,medium,90,high,62,low,86.85,high,48,medium,82.8,high,10,high,168,33,52,107760,679,159,42,80.2,600,SP Distribution,101
-East Renfrewshire,55.7753,-4.3362,Suburban,8,63,medium,89,high,58,low,43.79,high,40,medium,71.6,high,4,high,148,28,45,94660,173,547,41,82.1,625,SP Distribution,102
-City of Edinburgh,55.9533,-3.1883,Urban,7,60,medium,87,high,48,low,110.95,high,55,medium,82.8,high,14,high,540,125,190,526470,264,1994,36,80.5,680,SP Distribution,135
-Falkirk,56.0014,-3.7838,Urban,4,70,medium,74,high,65,low,286.6,high,70,medium,82.8,high,27,high,320,55,100,166620,297,561,41,77.2,590,SP Distribution,96
-Fife,56.1550,-3.2388,Urban,5,65,medium,78,high,58,low,698.05,high,60,medium,82.8,high,20,high,310,80,110,377670,1323,285,42,76.8,575,SP Distribution,93
-Glasgow City,55.8642,-4.2518,Urban,2,55,medium,91,high,45,low,780.98,high,82,high,71.6,high,44,high,620,140,210,635640,175,3632,36,71.8,620,SP Distribution,115
-Highland,57.4778,-4.2247,Rural,6,48,medium,70,high,58,low,584.98,high,42,low,29.9,high,10,high,210,30,55,237590,25659,9,45,78.5,545,SSEN SHEPD,84
-Inverclyde,55.9336,-4.6887,Urban,3,60,medium,63,high,52,low,138.1,high,65,medium,71.6,high,33,high,140,25,42,76490,162,472,42,72.5,545,SP Distribution,82
-Midlothian,55.8355,-3.0817,Suburban,6,65,medium,94,high,62,low,63.39,high,52,medium,82.8,high,12,high,160,30,50,101570,354,287,38,80.8,605,SP Distribution,100
-Moray,57.6506,-3.3178,Rural,7,55,medium,69,high,58,low,221.67,high,45,medium,61.1,high,7,high,155,28,45,97570,2238,44,42,79.8,555,SSEN SHEPD,88
-Na h-Eileanan Siar,57.7672,-7.0142,Rural,6,30,medium,25,high,38,low,5.8,high,35,low,18.0,high,12,high,80,14,22,26510,3071,9,47,76.5,505,SSEN SHEPD,77
-North Ayrshire,55.6546,-4.7540,Suburban,3,60,medium,86,high,52,low,922.1,high,65,medium,71.6,high,32,high,195,38,60,135280,885,153,43,74.2,530,SP Distribution,83
-North Lanarkshire,55.8652,-3.9671,Suburban,3,65,medium,79,high,58,low,1246.54,high,72,medium,71.6,high,29,high,420,95,145,345800,474,730,41,74.5,555,SP Distribution,88
-Orkney Islands,58.9809,-2.9605,Rural,9,32,medium,34,high,38,low,31.77,high,30,low,34.3,high,2,high,75,12,20,22880,990,23,46,82.0,530,SSEN SHEPD,85
-Perth and Kinross,56.5100,-3.7368,Rural,7,58,medium,45,high,60,low,47.08,high,48,medium,64.4,high,8,high,195,38,60,152830,5286,29,43,80.5,570,SSEN SHEPD,93
-Renfrewshire,55.8466,-4.5324,Suburban,5,63,medium,90,high,58,low,207.76,high,58,medium,71.6,high,19,high,240,50,78,178550,261,684,41,76.2,580,SP Distribution,96
-Scottish Borders,55.5484,-2.7822,Rural,7,58,medium,82,high,52,low,41.5,high,46,medium,52.9,high,8,high,175,33,52,115780,4732,24,45,79.1,530,SP Distribution,81
-Shetland Islands,60.5301,-1.2651,Rural,9,30,medium,23,high,38,low,7.02,high,28,low,34.3,high,1,high,78,13,22,23250,1468,16,44,85.2,570,SSEN SHEPD,90
-South Ayrshire,55.4581,-4.6288,Suburban,5,60,medium,82,high,52,low,106.51,high,55,medium,68.2,high,18,high,175,33,52,113710,1222,93,44,77.1,540,SP Distribution,85
-South Lanarkshire,55.5876,-3.7840,Suburban,4,65,medium,72,high,58,low,313.68,high,65,medium,68.2,high,21,high,400,88,135,319390,1772,180,41,76.4,560,SP Distribution,91
-Stirling,56.1165,-3.9369,Suburban,6,65,medium,82,high,60,low,103.47,high,52,medium,73.6,high,12,high,160,30,50,100390,2187,46,41,79.8,575,SP Distribution,95
-West Dunbartonshire,55.9425,-4.5614,Suburban,3,60,medium,55,high,52,low,142.29,high,65,medium,71.6,high,34,high,145,26,42,91280,162,563,41,72.8,540,SP Distribution,84
-West Lothian,55.8642,-3.6130,Suburban,5,68,medium,84,high,68,low,275.62,high,58,medium,82.8,high,20,high,280,65,90,183720,427,430,39,79.3,610,SP Distribution,98
+Aberdeen City,57.1497,-2.0943,Urban,6,62,medium,93,high,58,low,143.21,high,38.2,medium,61.1,high,14,high,370,85,125,232560,186,1250,37,76.2,680,SSEN SHEPD,118
+Aberdeenshire,57.1015,-2.2426,Rural,8,58,medium,55,high,65,low,91.82,high,18.8,medium,61.1,high,3,high,260,48,72,266650,6313,42,41,83.1,620,SSEN SHEPD,106
+Angus,56.6624,-2.8819,Rural,6,58,medium,64,high,55,low,322.32,high,40.7,medium,64.4,high,17,high,180,35,52,116890,2182,54,43,77.4,555,SSEN SHEPD,87
+Argyll and Bute,56.252,-5.6068,Rural,7,38,medium,32,high,42,low,48.07,high,32.3,medium,54.0,high,10,high,140,25,45,84670,6909,12,48,77.4,520,SSEN SHEPD,79
+Clackmannanshire,56.1082,-3.7679,Urban,4,65,medium,91,high,60,low,36.53,high,54.0,medium,82.8,high,27,high,120,22,38,51880,159,326,41,76.0,545,SP Distribution,86
+Dumfries and Galloway,55.0764,-3.6025,Rural,6,60,medium,74,high,52,low,738.47,high,35.2,medium,64.7,high,13,high,200,40,62,149370,6426,23,44,78.2,530,SP Distribution,83
+Dundee City,56.462,-2.9707,Urban,3,62,medium,88,high,55,low,130.55,high,71.5,medium,64.4,high,38,high,420,90,135,148960,60,2483,38,71.2,560,SSEN SHEPD,88
+East Ayrshire,55.4597,-4.269,Suburban,4,62,medium,85,high,55,low,808.79,high,53.9,medium,68.2,high,26,high,190,38,58,121510,1262,96,42,74.8,535,SP Distribution,85
+East Dunbartonshire,55.9748,-4.2027,Suburban,8,65,medium,78,high,60,low,64.9,high,21.5,medium,71.6,high,4,high,165,32,50,107330,175,613,42,81.5,620,SP Distribution,99
+East Lothian,55.9484,-2.751,Suburban,7,65,medium,90,high,62,low,86.85,high,29.8,medium,82.8,high,10,high,168,33,52,107760,679,159,42,80.2,600,SP Distribution,101
+East Renfrewshire,55.7753,-4.3362,Suburban,8,63,medium,89,high,58,low,43.79,high,20.9,medium,71.6,high,4,high,148,28,45,94660,173,547,41,82.1,625,SP Distribution,102
+City of Edinburgh,55.9533,-3.1883,Urban,7,60,medium,87,high,48,low,110.95,high,34.4,medium,82.8,high,14,high,540,125,190,526470,264,1994,36,80.5,680,SP Distribution,135
+Falkirk,56.0014,-3.7838,Urban,4,70,medium,74,high,65,low,286.6,high,52.9,medium,82.8,high,27,high,320,55,100,166620,297,561,41,77.2,590,SP Distribution,96
+Fife,56.155,-3.2388,Urban,5,65,medium,78,high,58,low,698.05,high,44.9,medium,82.8,high,20,high,310,80,110,377670,1323,285,42,76.8,575,SP Distribution,93
+Glasgow City,55.8642,-4.2518,Urban,2,55,medium,91,high,45,low,780.98,high,78.2,medium,71.6,high,44,high,620,140,210,635640,175,3632,36,71.8,620,SP Distribution,115
+Highland,57.4778,-4.2247,Rural,6,48,medium,70,high,58,low,584.98,high,31.4,medium,29.9,high,10,high,210,30,55,237590,25659,9,45,78.5,545,SSEN SHEPD,84
+Inverclyde,55.9336,-4.6887,Urban,3,60,medium,63,high,52,low,138.1,high,64.4,medium,71.6,high,33,high,140,25,42,76490,162,472,42,72.5,545,SP Distribution,82
+Midlothian,55.8355,-3.0817,Suburban,6,65,medium,94,high,62,low,63.39,high,31.7,medium,82.8,high,12,high,160,30,50,101570,354,287,38,80.8,605,SP Distribution,100
+Moray,57.6506,-3.3178,Rural,7,55,medium,69,high,58,low,221.67,high,26.6,medium,61.1,high,7,high,155,28,45,97570,2238,44,42,79.8,555,SSEN SHEPD,88
+Na h-Eileanan Siar,57.7672,-7.0142,Rural,6,30,medium,25,high,38,low,5.8,high,35.6,medium,18.0,high,12,high,80,14,22,26510,3071,9,47,76.5,505,SSEN SHEPD,77
+North Ayrshire,55.6546,-4.754,Suburban,3,60,medium,86,high,52,low,922.1,high,61.6,medium,71.6,high,32,high,195,38,60,135280,885,153,43,74.2,530,SP Distribution,83
+North Lanarkshire,55.8652,-3.9671,Suburban,3,65,medium,79,high,58,low,1246.54,high,57.8,medium,71.6,high,29,high,420,95,145,345800,474,730,41,74.5,555,SP Distribution,88
+Orkney Islands,58.9809,-2.9605,Rural,9,32,medium,34,high,38,low,31.77,high,18.6,medium,34.3,high,2,high,75,12,20,22880,990,23,46,82.0,530,SSEN SHEPD,85
+Perth and Kinross,56.51,-3.7368,Rural,7,58,medium,45,high,60,low,47.08,high,27.2,medium,64.4,high,8,high,195,38,60,152830,5286,29,43,80.5,570,SSEN SHEPD,93
+Renfrewshire,55.8466,-4.5324,Suburban,5,63,medium,90,high,58,low,207.76,high,44.2,medium,71.6,high,19,high,240,50,78,178550,261,684,41,76.2,580,SP Distribution,96
+Scottish Borders,55.5484,-2.7822,Rural,7,58,medium,82,high,52,low,41.5,high,28.4,medium,52.9,high,8,high,175,33,52,115780,4732,24,45,79.1,530,SP Distribution,81
+Shetland Islands,60.5301,-1.2651,Rural,9,30,medium,23,high,38,low,7.02,high,14.5,medium,34.3,high,1,high,78,13,22,23250,1468,16,44,85.2,570,SSEN SHEPD,90
+South Ayrshire,55.4581,-4.6288,Suburban,5,60,medium,82,high,52,low,106.51,high,42.2,medium,68.2,high,18,high,175,33,52,113710,1222,93,44,77.1,540,SP Distribution,85
+South Lanarkshire,55.5876,-3.784,Suburban,4,65,medium,72,high,58,low,313.68,high,46.4,medium,68.2,high,21,high,400,88,135,319390,1772,180,41,76.4,560,SP Distribution,91
+Stirling,56.1165,-3.9369,Suburban,6,65,medium,82,high,60,low,103.47,high,32.6,medium,73.6,high,12,high,160,30,50,100390,2187,46,41,79.8,575,SP Distribution,95
+West Dunbartonshire,55.9425,-4.5614,Suburban,3,60,medium,55,high,52,low,142.29,high,65.3,medium,71.6,high,34,high,145,26,42,91280,162,563,41,72.8,540,SP Distribution,84
+West Lothian,55.8642,-3.613,Suburban,5,68,medium,84,high,68,low,275.62,high,42.6,medium,82.8,high,20,high,280,65,90,183720,427,430,39,79.3,610,SP Distribution,98
