@@ -1,0 +1,9 @@
+area_name,lat,lon,urban_rural_class,simd_decile,energy_capacity,energy_capacity_confidence,digital_connectivity,digital_connectivity_confidence,future_grid_headroom,future_grid_headroom_confidence,infrastructure_reuse,infrastructure_reuse_confidence,community_benefit,community_benefit_confidence,environmental_burden,environmental_burden_confidence,vulnerability_exposure,vulnerability_exposure_confidence,jobs_construction,jobs_operational,jobs_indirect
+Falkirk,56.0014,-3.7838,Urban,5,72,high,78,medium,65,medium,58,high,72,medium,40,medium,35,medium,320,55,100
+Glasgow City,55.8642,-4.2518,Urban,2,52,medium,88,high,50,medium,42,medium,85,high,65,low,72,low,620,140,210
+Highland,57.4778,-4.2247,Rural,6,48,medium,40,low,55,low,70,high,45,low,35,high,25,high,210,30,55
+Dundee City,56.4620,-2.9707,Urban,4,60,high,70,high,58,medium,50,medium,68,high,52,medium,60,medium,420,90,135
+West Lothian,55.8642,-3.6130,Suburban,4,65,high,72,medium,62,high,55,medium,60,medium,45,medium,40,medium,280,65,90
+Aberdeenshire,57.1015,-2.2426,Rural,7,58,medium,55,medium,68,high,80,high,50,medium,30,high,22,high,250,45,70
+Fife,56.1550,-3.2388,Urban,5,66,high,68,medium,60,medium,48,medium,62,medium,48,medium,50,low,310,80,110
+Argyll & Bute,56.2520,-5.6068,Rural,8,40,low,38,low,45,low,85,high,35,low,28,high,18,high,140,25,45
